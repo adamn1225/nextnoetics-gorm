@@ -2,15 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #238d9b;
+  --secondary: #46d1db;
+  --foreground: #46d1db;
+  --background: #e7e7e7;
+}
+
+.hero-gradient {
+  background: linear-gradient(45deg,
+      rgb(101, 248, 226) 10%,
+      rgb(18, 166, 177) 40%,
+      rgb(16, 145, 130) 100%);
+}
+
+.btn-gradient {
+  background: linear-gradient(45deg,
+      rgb(101, 248, 226) 0%,
+      rgb(18, 166, 177) 20%,
+      rgb(15, 199, 177) 50%);
+}
+
+.nn-gradient {
+  background: linear-gradient(45deg,
+      rgb(101, 248, 226) 10%,
+      rgb(18, 166, 177) 40%,
+      rgb(16, 145, 130) 100%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #f9fafb;
+    --primary: #238d9b;
   }
 }
 
@@ -18,4 +46,173 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.dark body {
+  color: var(--primary);
+  background: var(--background);
+}
+
+/* From Uiverse.io by satyamchaudharydev */
+.onboardbutton {
+  --secondary-color: #fff;
+  --hover-color: #238d9b;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  color: var(--secondary-color);
+  background: linear-gradient(45deg,
+      rgb(95, 211, 194) 0%,
+      rgb(23, 181, 192) 50%,
+      rgb(16, 145, 130) 100%);
+  display: flex;
+  transition: 0.2s var(--background);
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.onboardbutton .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.onboardbutton .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: #fff;
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.onboardbutton .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.onboardbutton:hover {
+  background-color: #3bacb4;
+}
+
+.onboardbutton:hover .arrow {
+  background: #fff;
+}
+
+.onboardbutton:hover .arrow:before {
+  right: 0;
+}
+
+.theme {
+  display: flex;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme__toggle-wrap {
+  position: relative;
+}
+
+.theme__toggle {
+  background-color: hsl(55, 69%, 90%);
+  border-radius: 25% / 50%;
+  padding: 0.25em;
+  width: 4em;
+  height: 2em;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.theme__toggle:before {
+  background-color: hsl(54, 94%, 58%);
+  border-radius: 50%;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  transition: transform 0.3s ease-in-out;
+}
+
+.theme__toggle:checked {
+  background-color: hsl(210, 50%, 50%);
+}
+
+.theme__toggle:checked:before {
+  transform: translateX(2em);
+}
+
+.theme__toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.125em hsl(210, 50%, 70%);
+}
+
+a.active {
+  position: relative;
+}
+
+a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  @apply bg-cyan-700;
+}
+
+.rbc-btn-group>button {
+  @apply text-gray-900 dark:text-foreground !important;
+  @apply text-gray-900 !important;
+}
+
+.opt-btn {
+  @apply bg-white text-secondary font-bold py-3 px-6 rounded-full *:border border-foreground hover:border-red-400 hover:bg-foreground hover:text-white;
+}
+
+.opt-two {
+  @apply bg-secondary text-white font-bold py-3 px-6 rounded-full *:border border-red-500 hover:border-red-400 hover:bg-blue-600 hover:text-white;
+}
+
+.onboardbutton-login {
+  @apply bg-foreground text-white font-bold py-3 px-6 rounded-full *:border border-foreground hover:border-red-400 hover:bg-secondary hover:text-white;
+}
+
+.rbc-btn-group {
+  @apply dark:text-foreground !important;
+}
+
+.rbc-btn-group>button {
+  @apply text-gray-900 dark:text-foreground !important;
+  @apply text-gray-900 !important;
+}
+
+.rbc-row-bg>.rbc-off-range-bg {
+  @apply bg-gray-300 !important;
+  @apply dark:bg-zinc-950 !important;
+}
+
+.rbc-row-bg>.rbc-today {
+  @apply bg-blue-100 !important;
+  @apply dark:bg-gray-500 !important;
+}
+
+.rbc-day-bg {
+  @apply dark:bg-gray-800 !important;
+  background-color: white !important;
 }

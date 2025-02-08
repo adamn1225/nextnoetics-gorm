@@ -1,7 +1,9 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig: import('next').NextConfig = {
+  images: {
+    domains: ['localhost'], // ✅ Allow local images
+    unoptimized: true, // ✅ Disable Next.js optimization for local images
+  },
 };
 
 export default nextConfig;
