@@ -15,146 +15,93 @@ const ClientTasks = () => {
     const [profile, setProfile] = useState<any>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        const fetchTasks = async () => {
-            try {
-                // Get the current user
-                const { data: authData, error: authError } = await supabase.auth.getUser();
-                if (authError) {
-                    throw authError;
-                }
-
-                const userId = authData?.user?.id;
-                if (!userId) {
-                    throw new Error('User ID not found');
-                }
-
-                // Fetch user profile
-                const { data: profileData, error: profileError } = await supabase
-                    .from('profiles')
-                    .select('*')
-                    .eq('user_id', userId)
-                    .single();
-
-                if (profileError) {
-                    throw profileError;
-                }
-
-                if (!profileData.organization_id) {
-                    throw new Error('Organization ID not found for user');
-                }
-
-                setProfile(profileData);
-
-                // Manually add default tasks
-                const defaultTasks = [
-                    {
-                        id: 1,
-                        title: 'Finish the onboarding form',
-                        description: 'Complete the <a href="/dashboard/" class="text-blue-500 font-semibold underline">Onboarding Form</a> in the dashboard.',
-                        due_date: null,
-                        is_request: false,
-                        status: profileData.onboarding_completed ? 'Completed' : 'Pending',
-                        organization_id: profileData.organization_id,
-                        user_id: userId,
-                        task_type: 'client', // Add task type
-                    },
-                    {
-                        id: 2,
-                        title: 'Upload branding content',
-                        description: '<a href="/dashboard/files/" class="text-blue-500 font-semibold underline">Go to Files Page</a> page and upload any branding content you have. ',
-                        due_date: null,
-                        is_request: false,
-                        status: profileData.branding_content_uploaded ? 'Completed' : 'Pending',
-                        organization_id: profileData.organization_id,
-                        user_id: userId,
-                        task_type: 'client', // Add task type
-                    },
-                ];
-
-                // Fetch developer tasks from the database
-                const { data: developerTasks, error: developerTasksError } = await supabase
-                    .from('tasks')
-                    .select('*')
-                    .eq('organization_id', profileData.organization_id);
-
-                if (developerTasksError) {
-                    throw developerTasksError;
-                }
-
-                // Combine default tasks and developer tasks
-                const allTasks = [...defaultTasks, ...developerTasks];
-
-                // Filter out completed tasks
-                const pendingTasks = allTasks.filter(task => task.status !== 'Completed');
-
-                setTasks(pendingTasks);
-            } catch (error: any) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchTasks();
-    }, []);
-
-    const handleAddNote = async (taskId: number) => {
-        if (!newNote.trim()) return;
-
+useEffect(() => {
+    const fetchTasks = async () => {
         try {
-            const { data, error } = await supabase
-                .from('tasks')
-                .update({ notes: newNote })
-                .eq('id', taskId);
+            const userId = localStorage.getItem("user_id");
+            if (!userId) throw new Error("User ID not found");
 
-            if (error) {
-                throw error;
-            }
+            // ✅ Fetch user profile
+            const profileRes = await fetch(`http://localhost:5000/api/profiles/${userId}`);
+            const profileData = await profileRes.json();
+            if (!profileData.organization_id) throw new Error("Organization ID not found");
 
-            setTasks(tasks.map(task => task.id === taskId ? { ...task, notes: newNote } : task));
-            setNewNote('');
-            setSelectedTaskId(null);
+            setProfile(profileData);
+
+            // ✅ Fetch user tasks (Go backend will create default tasks if needed)
+            const tasksRes = await fetch(`http://localhost:5000/api/tasks?organization_id=${profileData.organization_id}&user_id=${userId}`);
+            const tasks = await tasksRes.json();
+
+            // ✅ Show only incomplete tasks
+            const pendingTasks = tasks.filter((task) => task.status !== "Completed");
+            setTasks(pendingTasks);
         } catch (error: any) {
             setError(error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
-    const handleTaskRequest = async (e: React.FormEvent) => {
-        e.preventDefault();
+    fetchTasks();
+}, []);
 
-        if (!taskTitle.trim() || !taskDescription.trim()) {
-            setError('Please fill in all required fields.');
-            return;
-        }
 
-        try {
-            const { data, error } = await supabase
-                .from('tasks')
-                .insert([{ title: taskTitle, description: taskDescription, due_date: taskDueDate, is_request: true, status: 'Pending', organization_id: profile.organization_id, task_type: 'client' }]);
 
-            if (error) {
-                throw error;
-            }
 
-            setTaskTitle('');
-            setTaskDescription('');
-            setTaskDueDate('');
-            setError(null);
-            setIsModalOpen(false);
-            alert('Task request submitted successfully.');
-        } catch (error: any) {
-            setError(error.message);
-        }
-    };
+const handleAddNote = async (taskId: number) => {
+    if (!newNote.trim()) return;
 
-    if (loading) {
-        return <div>Loading...</div>;
+    try {
+        const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ notes: newNote }),
+        });
+
+        if (!response.ok) throw new Error("Failed to update task");
+
+        setTasks(tasks.map(task => task.id === taskId ? { ...task, notes: newNote } : task));
+        setNewNote('');
+        setSelectedTaskId(null);
+    } catch (error: any) {
+        setError(error.message);
+    }
+};
+
+
+
+const handleTaskRequest = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!taskTitle.trim() || !taskDescription.trim()) {
+        setError("Please fill in all required fields.");
+        return;
     }
 
-    if (error) {
-        return <div>Error: {error}</div>;
+    try {
+        const response = await fetch("http://localhost:5000/api/tasks", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                title: taskTitle,
+                description: taskDescription,
+                due_date: taskDueDate,
+                is_request: true,
+                status: "Pending",
+                organization_id: profile.organization_id,
+                task_type: "client",
+            }),
+        });
+
+        if (!response.ok) throw new Error("Failed to submit task");
+
+        alert("Task request submitted successfully.");
+        setIsModalOpen(false);
+        fetchTasks(); // Refresh task list
+    } catch (error: any) {
+        setError(error.message);
     }
+};
 
     const clientTasks = tasks.filter(task => task.task_type === 'client');
     const developerTasks = tasks.filter(task => task.task_type === 'developer');
