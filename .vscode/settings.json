@@ -1,0 +1,30 @@
+{
+    "workbench.editor.wrapTabs": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "[html]": {
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true
+    },
+    "html.format.extraLiners": "",
+    "outputCapture": "std",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.suggest.showIssues": true,
+    "[typescriptreact]": {
+        "breadcrumbs.showArrays": true,
+        "breadcrumbs.enabled": true,
+        "breadcrumbs.showFunctions": true
+    },
+    "explorer.confirmDragAndDrop": false,
+    "typescript.validate.enable": true,
+    "javascript.validate.enable": true,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "eslint.run": "onType",
+    "eslint.alwaysShowStatus": true
+}

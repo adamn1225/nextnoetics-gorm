@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { fetchPosts, createPost, deletePost } from "@/lib/api";
-import ClientCms from "@/components/ClientCms";
+import ClientCms from "@/components/cms/ClientCms";
 
 export default function Blog() {
     const [posts, setPosts] = useState<any[]>([]);

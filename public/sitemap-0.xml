@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://noetics.io/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/admin/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/admin/AdminLayout/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/admin/clients/Analytics/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/admin/clients/clientfiles/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/admin/clients/onboard/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/admin/clients/tasks/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/admin/clients/users/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/admin/components/AdminTasksPage/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/dashboard/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/dashboard/UserLayout/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/dashboard/analytics/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/dashboard/files/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/dashboard/profile/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/dashboard/settings/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/dashboard/tasks/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/layout/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/login/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/project-details/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/reset-password/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/reset-token/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/setup-password.tsx/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://noetics.io/signup/</loc><lastmod>2025-01-28T16:19:34.931Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>

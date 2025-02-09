@@ -1,34 +1,28 @@
+'use client';
 import React, { useState } from 'react';
 import FullPageModal from './FullPageModal';
-import CmsPreview from './CmsPreview';
-
-interface CustomField {
-    name: string;
-    type: 'text' | 'image' | 'header' | 'color';
-    value?: string;
-}
+import CmsPreview from './client/CmsPreview';
 
 interface Post {
     id: number;
     title: string;
     content: string;
     content_html?: string;
-    status: 'draft' | 'published';
-    template: 'basic' | 'minimal' | 'modern';
+    status: string;
+    template: 'basic' | 'minimal' | 'modern'; // Update the template type
     created_at?: string;
     scheduled_publish_date?: string;
     featured_image?: string;
-    slug: string; // Make slug required
-    customFields?: CustomField[];
+    slug?: string;
 }
 
-interface PostListProps {
+interface AdminPostListProps {
     posts: Post[];
     handleEdit: (post: Post) => void;
     handleDelete: (id: number) => void;
 }
 
-const PostList: React.FC<PostListProps> = ({ posts, handleEdit, handleDelete }) => {
+const AdminPostList: React.FC<AdminPostListProps> = ({ posts, handleEdit, handleDelete }) => {
     const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
     const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
@@ -121,4 +115,4 @@ const PostList: React.FC<PostListProps> = ({ posts, handleEdit, handleDelete }) 
     );
 };
 
-export default PostList;
+export default AdminPostList;

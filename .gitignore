@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# OAuth2 credentials
+credentials/client_secret_*.json
+credentials/service-account-key.json
