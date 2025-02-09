@@ -216,3 +216,46 @@ a.active::after {
   @apply dark:bg-gray-800 !important;
   background-color: white !important;
 }
+
+.side-navbar {
+  @apply flex-grow bg-gray-950;
+  height: 100vh;
+  /* Full height of the viewport */
+  width: 13em;
+  color: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  /* Prevent shrinking */
+  flex-grow: 1;
+  /* Allow growing */
+}
+
+.sidenav-text {
+  font-size: .50em;
+  text-wrap: nowrap;
+  width: 100%;
+}
+
+.side-nav-btn {
+  @apply text-gray-400 font-normal w-full box-border pl-2;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block !important;
+}
+
+.side-nav-btn:hover {
+  @apply text-white bg-slate-800 w-full;
+}
+
+.side-nav-btn.active {
+  @apply text-white font-semibold;
+  border-bottom: 2px solid #14b8a6;
+  width: 100%;
+}

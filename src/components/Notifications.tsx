@@ -35,7 +35,7 @@ const Notifications: React.FC = () => {
     return (
         <div className="relative">
             <BellIcon
-                className="h-8 w-8 text-zinc-600 dark:text-white cursor-pointer"
+                className="h-8 w-8 text-white dark:text-white cursor-pointer"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             />
             {notifications.some(notification => !notification.is_read) && (

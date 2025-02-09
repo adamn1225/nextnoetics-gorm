@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, useEffect, useTransition } from 'react';
 import { Home, Folder, ClipboardList, BarChart, User, LogOut, Settings, Calendar, MonitorCog } from 'lucide-react';
 import { supabase } from '@lib/supabaseClient';
